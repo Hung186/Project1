@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/mQLLoaiHang"
+            android:icon="@mipmap/producttype"
+            android:title="Quản lý Loại Hàng" />
+        <item
+            android:id="@+id/mQLSanPham"
+            android:icon="@mipmap/product"
+            android:title="Quản lý Sản Phẩm" />
+        <item
+            android:id="@+id/mQLKhachHang"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="Quản lý Khách Hàng" />
+        <item
+            android:id="@+id/mQLPhieuGiamGia"
+            android:icon="@mipmap/phieugiamgia"
+            android:title="Quản lý thành viên" />
+        <item
+            android:title="Thống kê">
+            <menu>
+                <item
+                    android:id="@+id/mQLThongKe"
+                    android:title="Top 10 sản phẩm bán nhiều nhất"
+                    android:icon="@mipmap/topten"/>
+            </menu>
+        </item>
+        <item
+            android:title="Đăng xuất">
+            <menu>
+                <item
+                    android:id="@+id/mThoat"
+                    android:title="Thoát"
+                    android:icon="@mipmap/leaveicon"/>
+            </menu>
+        </item>
+    </group>
+</menu>
