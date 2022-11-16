@@ -43,7 +43,7 @@ public class LoaiHangDAO {
     public int xoaLoaiHang(int maloai){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
 
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM LOAIHANG WHERE maloai = ?", new String[]{String.valueOf(maloai)});
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM SANPHAM WHERE maloai = ?", new String[]{String.valueOf(maloai)});
         if (cursor.getCount() != 0){
             return -1;
         }
