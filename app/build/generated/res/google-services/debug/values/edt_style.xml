@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyEditTextStyle">
+        <item name="android:drawablePadding">18dp</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/rounded_edt</item>
+    </style>
+    <style name="MyEditTextEmail" parent="MyEditTextStyle">
+        <item name="android:drawableLeft">@mipmap/ic_email</item>
+        <item name="android:padding">18dp</item>
+        <item name="android:hint">Nhập tên của bạn</item>
+    </style>
+    <style name="MyEditTextPass" parent="MyEditTextStyle">
+        <item name="android:drawableLeft">@drawable/ic_baseline_lock_24</item>
+        <item name="android:padding">18dp</item>
+        <item name="android:hint">Nhập mật khẩu của bạn</item>
+    </style>
+    <style name="MyEditTextPhoneNumber" parent="MyEditTextStyle">
+        <item name="android:drawableLeft">@drawable/ic_baseline_local_phone_24</item>
+        <item name="android:padding">18dp</item>
+        <item name="android:hint">Nhập số điện thoại của bạn</item>
+    </style>
+    <style name="MyEditTextName" parent="MyEditTextStyle">
+        <item name="android:drawableLeft">@drawable/ic_baseline_person_24</item>
+        <item name="android:padding">18dp</item>
+        <item name="android:hint">Enter your name</item>
+    </style>
+    <style name="MyTextViewRegister">
+        <item name="android:textColor">#FF2D6DAD</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>

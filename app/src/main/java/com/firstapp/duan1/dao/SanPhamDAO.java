@@ -62,7 +62,7 @@ public class SanPhamDAO {
     }
 
     //1:xóa thành công - 0: xóa thất bại - -1: có sản phẩm tồn tại trong thể loại đó
-    public int xoaSach(int masp){
+    public int xoaSanPham(int masp){
         SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM HOADONCHITIET WHERE masp = ?", new String[]{String.valueOf(masp)});
         if (cursor.getCount() != 0){
