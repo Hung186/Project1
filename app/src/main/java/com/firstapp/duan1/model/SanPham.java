@@ -5,8 +5,9 @@ public class SanPham {
     private String tensp, thuonghieu;
     private double giasp;
     private byte[] hinhanh;
+    private String motasanpham;
 
-    public SanPham(int masp, int maloai, int maphieu, String tensp, String thuonghieu, double giasp, byte[] hinhanh) {
+    public SanPham(int masp, int maloai, int maphieu, String tensp, String thuonghieu, double giasp, byte[] hinhanh, String motasanpham) {
         this.masp = masp;
         this.maloai = maloai;
         this.maphieu = maphieu;
@@ -14,6 +15,7 @@ public class SanPham {
         this.thuonghieu = thuonghieu;
         this.giasp = giasp;
         this.hinhanh = hinhanh;
+        this.motasanpham = motasanpham;
     }
 
     public int getMasp() {
@@ -70,5 +72,13 @@ public class SanPham {
 
     public void setHinhanh(byte[] hinhanh) {
         this.hinhanh = hinhanh;
+    }
+
+    public String getMotasanpham() {
+        return motasanpham;
+    }
+
+    public void setMotasanpham(String motasanpham) {
+        this.motasanpham = motasanpham;
     }
 }
