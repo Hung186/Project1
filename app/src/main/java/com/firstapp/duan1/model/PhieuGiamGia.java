@@ -1,17 +1,10 @@
 package com.firstapp.duan1.model;
 
 public class PhieuGiamGia {
-    private int maphieu, mahd;
-    private String ngaynhan, ngayhethan;
+    private int maphieu;
     private double giatrigiam;
-
-    public PhieuGiamGia(int maphieu, int mahd, String ngaynhan, String ngayhethan, double giatrigiam) {
-        this.maphieu = maphieu;
-        this.mahd = mahd;
-        this.ngaynhan = ngaynhan;
-        this.ngayhethan = ngayhethan;
-        this.giatrigiam = giatrigiam;
-    }
+    private String ngaynhan, ngayhethan;
+    private int mand;
 
     public int getMaphieu() {
         return maphieu;
@@ -21,12 +14,12 @@ public class PhieuGiamGia {
         this.maphieu = maphieu;
     }
 
-    public int getMahd() {
-        return mahd;
+    public double getGiatrigiam() {
+        return giatrigiam;
     }
 
-    public void setMahd(int mahd) {
-        this.mahd = mahd;
+    public void setGiatrigiam(double giatrigiam) {
+        this.giatrigiam = giatrigiam;
     }
 
     public String getNgaynhan() {
@@ -45,11 +38,19 @@ public class PhieuGiamGia {
         this.ngayhethan = ngayhethan;
     }
 
-    public double getGiatrigiam() {
-        return giatrigiam;
+    public int getMand() {
+        return mand;
     }
 
-    public void setGiatrigiam(double giatrigiam) {
+    public void setMand(int mand) {
+        this.mand = mand;
+    }
+
+    public PhieuGiamGia(int maphieu, double giatrigiam, String ngaynhan, String ngayhethan, int mand) {
+        this.maphieu = maphieu;
         this.giatrigiam = giatrigiam;
+        this.ngaynhan = ngaynhan;
+        this.ngayhethan = ngayhethan;
+        this.mand = mand;
     }
 }

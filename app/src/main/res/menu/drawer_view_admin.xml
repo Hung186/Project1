@@ -16,13 +16,13 @@
         <item
             android:id="@+id/mQLPhieuGiamGia"
             android:icon="@mipmap/phieugiamgia"
-            android:title="Quản lý thành viên" />
+            android:title="Quản lý phiếu giảm giá" />
         <item
             android:title="Thống kê">
             <menu>
                 <item
                     android:id="@+id/mQLThongKe"
-                    android:title="Top 10 sản phẩm bán nhiều nhất"
+                    android:title="Quản lý doanh thu"
                     android:icon="@mipmap/topten"/>
             </menu>
         </item>

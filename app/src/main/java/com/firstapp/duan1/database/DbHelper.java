@@ -48,6 +48,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 "(6, 'Đồng Hồ Q&Q', 'Q&Q', 5000000, null, 'Nhà phân phối độc quyền các thương hiệu đồng hồ, kính mắt, bút ký nổi tiếng thế giới: Epos Swiss, Atlantic Swiss, Diamond D, Philippe Auguste, Jacques Lemans, Citizen, Aries Gold, dây da đồng hồ, dây đồng hồ đeo tay', 1), " +
                 "(7, 'ĐỒNG HỒ CASIO MTP', 'CASIO', 2000000, null, 'Mẫu Casio MTP-V004L-1B2UDF mặt số đen size 41mm thiết kế đơn giản trẻ trung 3 kim, phối cùng bộ dây da nâu phiên bản da trơn thời trang.', 1), " +
                 "(8, 'ĐỒNG HỒ CASIO EFV', 'CASIO', 4000000, null, 'Mẫu Casio EFV-570D-7AVUDF nổi bật với kiểu dáng 6 kim kèm tính năng Chronograph đo thời gian vượt trội đặc trưng thuộc dòng Edifice dành cho các tín đồ yêu thích phong cách thể thao nhưng lại khoác trên mình vẻ ngoài lịch lãm.', 1)");
+        db.execSQL("INSERT INTO PHIEUGIAMGIA VALUES (1, 0.1, null, null, null), (2, 0.15, null, null, null), (3, 0.25, null, null, null), (4, 0.5, null, null, null)");
     }
 
     @Override

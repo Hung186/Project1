@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,7 @@ import com.firstapp.duan1.adapter.LoaiHangAdapter;
 import com.firstapp.duan1.adapter.SanPhamAdapter;
 import com.firstapp.duan1.dao.LoaiHangDAO;
 import com.firstapp.duan1.dao.SanPhamDAO;
+import com.firstapp.duan1.model.LoaiHang;
 import com.firstapp.duan1.model.SanPham;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -27,6 +30,8 @@ public class QLSanPham extends Fragment {
     RecyclerView recyclerQLSanPham;
     SanPhamDAO sanPhamDAO;
     ArrayList<SanPham> list;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -37,12 +42,13 @@ public class QLSanPham extends Fragment {
         //data
         sanPhamDAO = new SanPhamDAO(getContext());
 
-
         loadData();
 
 
         return view;
     }
+
+
 
     private void loadData() {
         list = sanPhamDAO.getDSSanPham();
@@ -51,4 +57,5 @@ public class QLSanPham extends Fragment {
         SanPhamAdapter adapter = new SanPhamAdapter(list, getContext());
         recyclerQLSanPham.setAdapter(adapter);
     }
+
 }

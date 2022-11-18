@@ -17,6 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.firstapp.duan1.fragment.QLLoaiHang;
+import com.firstapp.duan1.fragment.QLPhieuGiamGia;
 import com.firstapp.duan1.fragment.QLSanPham;
 import com.google.android.material.navigation.NavigationView;
 
@@ -54,6 +55,7 @@ public class AdminActivity extends AppCompatActivity {
                     case R.id.mQLKhachHang:
                         break;
                     case R.id.mQLPhieuGiamGia:
+                        fragment = new QLPhieuGiamGia();
                         break;
                     case R.id.mThoat:
                         Intent intent = new Intent(AdminActivity.this, DangNhapActivity.class);

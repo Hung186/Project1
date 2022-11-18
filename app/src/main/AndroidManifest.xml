@@ -26,13 +26,13 @@
             android:name=".DangNhapActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminActivity"
+            android:name=".ManHinhChaoActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".ManHinhChaoActivity"
+            android:name=".AdminActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
