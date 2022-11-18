@@ -17,6 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.firstapp.duan1.fragment.QLLoaiHang;
+import com.firstapp.duan1.fragment.QLSanPham;
 import com.google.android.material.navigation.NavigationView;
 
 public class AdminActivity extends AppCompatActivity {
@@ -48,6 +49,7 @@ public class AdminActivity extends AppCompatActivity {
                         fragment = new QLLoaiHang();
                         break;
                     case R.id.mQLSanPham:
+                        fragment = new QLSanPham();
                         break;
                     case R.id.mQLKhachHang:
                         break;

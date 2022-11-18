@@ -17,7 +17,7 @@ public class DbHelper extends SQLiteOpenHelper {
         String dbLoaiHang = "CREATE TABLE LOAIHANG(maloai integer primary key autoincrement, tenloai text)";
         db.execSQL(dbLoaiHang);
 
-        String dbSanPham = "CREATE TABLE SANPHAM(masp integer primary key autoincrement, tensp text, thuonghieu text, giasp real, hinhanh blob, motasanpham text, maloai integer references LOAIHANG(maloai))";
+        String dbSanPham = "CREATE TABLE SANPHAM(masp integer primary key autoincrement, tensp text, thuonghieu text, giasp real, hinhanh text, motasanpham text, maloai integer references LOAIHANG(maloai))";
         db.execSQL(dbSanPham);
 
         String dbPhieuGiamGia = "CREATE TABLE PHIEUGIAMGIA(maphieu integer primary key autoincrement, giatrigiam real, ngaynhan text, ngayhethan text, mand integer references NGUOIDUNG(mand))";

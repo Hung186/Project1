@@ -38,12 +38,7 @@ public class DangNhapActivity extends AppCompatActivity {
         nguoiDungDAO = new NguoiDungDAO(DangNhapActivity.this);
 
         sharedPreferences = getSharedPreferences("THONGTINNGUOIDUNG", MODE_PRIVATE);
-        if (cbRememberMe.isChecked()){
-            String tennd = sharedPreferences.getString("tennd", "");
-            String matkhau = sharedPreferences.getString("matkhau", "");
-            edtUser.setText(tennd);
-            edtPass.setText(matkhau);
-        }
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

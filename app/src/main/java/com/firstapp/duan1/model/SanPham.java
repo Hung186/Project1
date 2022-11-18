@@ -1,22 +1,11 @@
 package com.firstapp.duan1.model;
 
 public class SanPham {
-    private int masp, maloai, maphieu;
+    private int masp, maloai;
     private String tensp, thuonghieu;
     private double giasp;
-    private byte[] hinhanh;
+    private String hinhanh;
     private String motasanpham;
-
-    public SanPham(int masp, int maloai, int maphieu, String tensp, String thuonghieu, double giasp, byte[] hinhanh, String motasanpham) {
-        this.masp = masp;
-        this.maloai = maloai;
-        this.maphieu = maphieu;
-        this.tensp = tensp;
-        this.thuonghieu = thuonghieu;
-        this.giasp = giasp;
-        this.hinhanh = hinhanh;
-        this.motasanpham = motasanpham;
-    }
 
     public int getMasp() {
         return masp;
@@ -32,14 +21,6 @@ public class SanPham {
 
     public void setMaloai(int maloai) {
         this.maloai = maloai;
-    }
-
-    public int getMaphieu() {
-        return maphieu;
-    }
-
-    public void setMaphieu(int maphieu) {
-        this.maphieu = maphieu;
     }
 
     public String getTensp() {
@@ -66,11 +47,11 @@ public class SanPham {
         this.giasp = giasp;
     }
 
-    public byte[] getHinhanh() {
+    public String getHinhanh() {
         return hinhanh;
     }
 
-    public void setHinhanh(byte[] hinhanh) {
+    public void setHinhanh(String hinhanh) {
         this.hinhanh = hinhanh;
     }
 
@@ -79,6 +60,16 @@ public class SanPham {
     }
 
     public void setMotasanpham(String motasanpham) {
+        this.motasanpham = motasanpham;
+    }
+
+    public SanPham(int masp, String tensp, String thuonghieu, double giasp, String hinhanh, String motasanpham, int maloai) {
+        this.masp = masp;
+        this.maloai = maloai;
+        this.tensp = tensp;
+        this.thuonghieu = thuonghieu;
+        this.giasp = giasp;
+        this.hinhanh = hinhanh;
         this.motasanpham = motasanpham;
     }
 }
