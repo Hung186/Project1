@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -15,13 +14,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firstapp.duan1.R;
-import com.firstapp.duan1.adapter.LoaiHangAdapter;
 import com.firstapp.duan1.adapter.SanPhamAdapter;
 import com.firstapp.duan1.dao.LoaiHangDAO;
 import com.firstapp.duan1.dao.SanPhamDAO;
 import com.firstapp.duan1.model.LoaiHang;
 import com.firstapp.duan1.model.SanPham;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 

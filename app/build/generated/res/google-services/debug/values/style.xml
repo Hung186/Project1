@@ -25,7 +25,7 @@
     <style name="MyEditTextName" parent="MyEditTextStyle">
         <item name="android:drawableLeft">@drawable/ic_baseline_person_24</item>
         <item name="android:padding">18dp</item>
-        <item name="android:hint">Enter your name</item>
+        <item name="android:hint">Nhập tên tài khoản</item>
     </style>
     <style name="MyTextViewRegister">
         <item name="android:textColor">#FF2D6DAD</item>
