@@ -9,6 +9,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.Objects;
+
 public class ManHinhChaoActivity extends AppCompatActivity {
 
     @Override
@@ -16,18 +18,12 @@ public class ManHinhChaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_man_hinh_chao);
 
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
-        ImageView ivLogo = findViewById(R.id.ivlogo);
+        Glide.with(this).load(R.mipmap.loading).into((ImageView) findViewById(R.id.ivlogo));
 
-
-        Glide.with(this).load(R.mipmap.loading).into(ivLogo);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                startActivity(new Intent(ManHinhChaoActivity.this, DangNhapActivity.class));
-            }
-        }, 3000);
+        new Handler().postDelayed(
+                () -> startActivity(new Intent(ManHinhChaoActivity.this, DangNhapActivity.class)), 3_000
+        );
     }
 }

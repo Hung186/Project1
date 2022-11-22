@@ -12,22 +12,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firstapp.duan1.R;
-import com.firstapp.duan1.dao.LoaiHangDAO;
-import com.firstapp.duan1.dao.PhieuGiamGiaDAO;
-import com.firstapp.duan1.model.LoaiHang;
+import com.firstapp.duan1.firebase.controller.ControllerPhieuGiamGia;
 import com.firstapp.duan1.model.PhieuGiamGia;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class PhieuGiamGiaAdapter extends RecyclerView.Adapter<PhieuGiamGiaAdapter.ViewHolder>{
-    private ArrayList<PhieuGiamGia> list;
-    private Context context;
-    private PhieuGiamGiaDAO phieuGiamGiaDAO;
+    private final List<PhieuGiamGia> list;
+    private final Context context;
+    private final ControllerPhieuGiamGia controllerPhieuGiamGia;
 
-    public PhieuGiamGiaAdapter(ArrayList<PhieuGiamGia> list, Context context, PhieuGiamGiaDAO phieuGiamGiaDAO) {
+    public PhieuGiamGiaAdapter(List<PhieuGiamGia> list, Context context, ControllerPhieuGiamGia controllerPhieuGiamGia) {
         this.list = list;
         this.context = context;
-        this.phieuGiamGiaDAO = phieuGiamGiaDAO;
+        this.controllerPhieuGiamGia = controllerPhieuGiamGia;
     }
 
     @NonNull
@@ -40,7 +38,7 @@ public class PhieuGiamGiaAdapter extends RecyclerView.Adapter<PhieuGiamGiaAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.txtGiaTriGiam.setText("Giá trị giảm: " + list.get(position).getGiatrigiam());
+        holder.tvReductionAmount.setText("Giá trị giảm: " + list.get(position).percentage);
     }
 
     @Override
@@ -48,13 +46,15 @@ public class PhieuGiamGiaAdapter extends RecyclerView.Adapter<PhieuGiamGiaAdapte
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView txtGiaTriGiam;
-        ImageView ivDel;
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+        TextView tvReductionAmount;
+        ImageView ivDelete;
+
         public ViewHolder(@NonNull View itemView){
             super(itemView);
-            txtGiaTriGiam = itemView.findViewById(R.id.txtGiaTriGiam);
-            ivDel = itemView.findViewById(R.id.ivDel);
+
+            tvReductionAmount = itemView.findViewById(R.id.txtGiaTriGiam);
+            ivDelete = itemView.findViewById(R.id.ivDel);
         }
     }
 }

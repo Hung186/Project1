@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -15,18 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firstapp.duan1.R;
 import com.firstapp.duan1.adapter.SanPhamAdapter;
-import com.firstapp.duan1.dao.LoaiHangDAO;
-import com.firstapp.duan1.dao.SanPhamDAO;
-import com.firstapp.duan1.model.LoaiHang;
+import com.firstapp.duan1.firebase.controller.ControllerSanPham;
 import com.firstapp.duan1.model.SanPham;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class QLSanPham extends Fragment {
-    Spinner spLoaiHang;
-    RecyclerView recyclerQLSanPham;
-    SanPhamDAO sanPhamDAO;
-    ArrayList<SanPham> list;
+    private Spinner spLoaiHang;
+    private RecyclerView recyclerQLSanPham;
+    private List<SanPham> list;
+    private final ControllerSanPham controllerSanPham = new ControllerSanPham();
 
 
     @Nullable
@@ -36,11 +33,7 @@ public class QLSanPham extends Fragment {
         spLoaiHang = view.findViewById(R.id.spLoaiHang);
         recyclerQLSanPham = view.findViewById(R.id.recyclerQLSanPham);
 
-        //data
-        sanPhamDAO = new SanPhamDAO(getContext());
-
         loadData();
-
 
         return view;
     }
@@ -48,10 +41,14 @@ public class QLSanPham extends Fragment {
 
 
     private void loadData() {
-        list = sanPhamDAO.getDSSanPham();
+        list = controllerSanPham.getAll();
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+
         recyclerQLSanPham.setLayoutManager(linearLayoutManager);
+
         SanPhamAdapter adapter = new SanPhamAdapter(list, getContext());
+
         recyclerQLSanPham.setAdapter(adapter);
     }
 

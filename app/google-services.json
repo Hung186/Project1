@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "978320306823",
-    "firebase_url": "https://project1-ba466-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "project1-ba466",
-    "storage_bucket": "project1-ba466.appspot.com"
+    "project_number": "796777611334",
+    "firebase_url": "https://duan1-a7273-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "duan1-a7273",
+    "storage_bucket": "duan1-a7273.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:978320306823:android:741fe9d0fda33dbed7be22",
+        "mobilesdk_app_id": "1:796777611334:android:301e19b6714a17406d8a47",
         "android_client_info": {
-          "package_name": "com.firstapp.duan1"
+          "package_name": "com.fpoly.project1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "978320306823-nmg7tl35r3eiv68umtgmmks3uep88ps6.apps.googleusercontent.com",
+          "client_id": "796777611334-s3dsvqi3ui37m5g585tpops14bvdgrd2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.firstapp.duan1",
-            "certificate_hash": "3006f0489627a75905deb978c9e8246b6c84445d"
+            "package_name": "com.fpoly.project1",
+            "certificate_hash": "abeb5fb3f310eb4f7b3b89697ab8096c687055da"
           }
         },
         {
-          "client_id": "978320306823-shcp6mivv43ddqjlu86t8rhvf4892183.apps.googleusercontent.com",
+          "client_id": "796777611334-ft6vop9d5juh8m1bmgav4qa0ils5hedv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBBDorTPo7b3Mz7B7Zs3Hwbj6UIwKOCgVY"
+          "current_key": "AIzaSyCgbB2bAiS4lZpbFL33KLfnag62a5VbD5I"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "978320306823-shcp6mivv43ddqjlu86t8rhvf4892183.apps.googleusercontent.com",
+              "client_id": "796777611334-ft6vop9d5juh8m1bmgav4qa0ils5hedv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

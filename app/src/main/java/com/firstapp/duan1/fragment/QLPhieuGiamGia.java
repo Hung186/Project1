@@ -13,29 +13,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firstapp.duan1.R;
 import com.firstapp.duan1.adapter.PhieuGiamGiaAdapter;
-import com.firstapp.duan1.adapter.SanPhamAdapter;
-import com.firstapp.duan1.dao.PhieuGiamGiaDAO;
-import com.firstapp.duan1.dao.SanPhamDAO;
+import com.firstapp.duan1.firebase.controller.ControllerPhieuGiamGia;
 import com.firstapp.duan1.model.PhieuGiamGia;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class QLPhieuGiamGia extends Fragment {
-    RecyclerView recyclerQLPhieuGiamGia;
-    PhieuGiamGiaDAO phieuGiamGiaDAO;
-    ArrayList<PhieuGiamGia> list;
+    private RecyclerView recyclerQLPhieuGiamGia;
+    private List<PhieuGiamGia> list;
+    private final ControllerPhieuGiamGia controllerPhieuGiamGia = new ControllerPhieuGiamGia();
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ql_phieugiamgia, container, false);
         recyclerQLPhieuGiamGia = view.findViewById(R.id.recyclerQLPhieuGiamGia);
 
-
-        //data
-        phieuGiamGiaDAO = new PhieuGiamGiaDAO(getContext());
-
         loadData();
-
 
         return view;
     }
@@ -43,10 +37,14 @@ public class QLPhieuGiamGia extends Fragment {
 
 
     private void loadData() {
-        list = phieuGiamGiaDAO.getDSPhieuGiamGia();
+        list = controllerPhieuGiamGia.getAll();
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+
         recyclerQLPhieuGiamGia.setLayoutManager(linearLayoutManager);
-        PhieuGiamGiaAdapter adapter = new PhieuGiamGiaAdapter(list, getContext(), phieuGiamGiaDAO);
+
+        PhieuGiamGiaAdapter adapter = new PhieuGiamGiaAdapter(list, getContext(), controllerPhieuGiamGia);
+
         recyclerQLPhieuGiamGia.setAdapter(adapter);
     }
 

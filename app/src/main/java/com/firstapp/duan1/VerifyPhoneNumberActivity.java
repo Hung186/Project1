@@ -8,16 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,14 +20,13 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
-import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class VerifyPhoneNumberActivity extends AppCompatActivity {
-    private EditText edtPhoneNumber;
+    private EditText etPhoneNumber;
     private Button btnVerifyPhoneNumber;
+    private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,23 +35,18 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
         setTitleBar();
         initUi();
 
-        mAuth = FirebaseAuth.getInstance();
-
-        btnVerifyPhoneNumber.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String strPhoneNumber = edtPhoneNumber.getText().toString().trim();
-                onClickVerifyPhoneNumber(strPhoneNumber);
-            }
+        btnVerifyPhoneNumber.setOnClickListener(v -> {
+            String strPhoneNumber = etPhoneNumber.getText().toString().trim();
+            onClickVerifyPhoneNumber(strPhoneNumber);
         });
     }
 
     private void onClickVerifyPhoneNumber(String strPhoneNumber) {
         PhoneAuthOptions options =
-                PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(strPhoneNumber)       // Phone number to verify
-                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                        .setActivity(this)                 // Activity (for callback binding)
+                PhoneAuthOptions.newBuilder(firebaseAuth)
+                        .setPhoneNumber(strPhoneNumber)
+                        .setTimeout(60L, TimeUnit.SECONDS)
+                        .setActivity(this)
                         .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                             @Override
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
@@ -72,42 +61,38 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
                             @Override
                             public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                                 super.onCodeSent(verificationId, forceResendingToken);
+
                                 goToEnterOtpActivity(strPhoneNumber, verificationId);
                             }
-                        })          // OnVerificationStateChangedCallbacks
+                        })
                         .build();
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
 
 
-
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.e(TAG, "signInWithCredential:success");
+        firebaseAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        Log.i(TAG, "signInWithCredential:success");
 
-                            FirebaseUser user = task.getResult().getUser();
-                            // Update UI
-                            goToMainActibity(user.getPhoneNumber());
-                        } else {
-                            // Sign in failed, display a message and update the UI
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                // The verification code entered was invalid
-                                Toast.makeText(VerifyPhoneNumberActivity.this, " The verification code entered was invalid", Toast.LENGTH_SHORT).show();
-                            }
+                        FirebaseUser user = task.getResult().getUser();
+
+                        goToMainActivity(user.getPhoneNumber());
+                    } else {
+                        Log.w(TAG, "signInWithCredential:failure", task.getException());
+
+                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                            Toast.makeText(VerifyPhoneNumberActivity.this, " The verification code entered was invalid", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
     }
 
-    private void goToMainActibity(String phoneNumber) {
+    private void goToMainActivity(String phoneNumber) {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("phone_number", phoneNumber);
+
         startActivity(intent);
     }
 
@@ -115,17 +100,18 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
         Intent intent = new Intent(this, EnterOtpActivity.class);
         intent.putExtra("phone_number", strPhoneNumber);
         intent.putExtra("verification_id", verificationId);
+
         startActivity(intent);
     }
 
     private void setTitleBar() {
-        if (getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Verify Phone Number");
         }
     }
 
-    private void initUi(){
-        edtPhoneNumber = findViewById(R.id.edtPhoneNumber);
+    private void initUi() {
+        etPhoneNumber = findViewById(R.id.edtPhoneNumber);
         btnVerifyPhoneNumber = findViewById(R.id.btnVerifyPhoneNumber);
     }
 }

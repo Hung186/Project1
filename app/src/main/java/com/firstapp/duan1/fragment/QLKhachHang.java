@@ -12,26 +12,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firstapp.duan1.R;
-import com.firstapp.duan1.adapter.KhachHangAdapter;
-import com.firstapp.duan1.adapter.LoaiHangAdapter;
-import com.firstapp.duan1.dao.NguoiDungDAO;
-import com.firstapp.duan1.model.LoaiHang;
+import com.firstapp.duan1.adapter.NguoiDungAdapter;
+import com.firstapp.duan1.firebase.controller.ControllerNguoiDung;
 import com.firstapp.duan1.model.NguoiDung;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class QLKhachHang extends Fragment {
-    private ArrayList<NguoiDung> list;
-    private NguoiDungDAO nguoiDungDAO;
     private RecyclerView recyclerQLKhachHang;
-    @Nullable
+    private final ControllerNguoiDung controllerNguoiDung = new ControllerNguoiDung();
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ql_khachhang, container, false);
 
         recyclerQLKhachHang = view.findViewById(R.id.recyclerQLKhachHang);
-
-        nguoiDungDAO = new NguoiDungDAO(getContext());
 
         loadData();
 
@@ -40,10 +35,12 @@ public class QLKhachHang extends Fragment {
     }
 
     private void loadData() {
-        list = nguoiDungDAO.getDSKhachHang();
+        List<NguoiDung> list = controllerNguoiDung.getAll();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+
         recyclerQLKhachHang.setLayoutManager(linearLayoutManager);
-        KhachHangAdapter adapter = new KhachHangAdapter(list, getContext());
+        NguoiDungAdapter adapter = new NguoiDungAdapter(list, getContext());
+
         recyclerQLKhachHang.setAdapter(adapter);
     }
 }

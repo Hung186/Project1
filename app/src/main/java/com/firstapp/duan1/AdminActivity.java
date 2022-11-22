@@ -36,8 +36,6 @@ public class AdminActivity extends AppCompatActivity {
         View headerlayout = navigationViewAdmin.getHeaderView(0);
         TextView txtTen = headerlayout.findViewById(R.id.txtTen);
 
-
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
@@ -63,9 +61,12 @@ public class AdminActivity extends AppCompatActivity {
                         Intent intent = new Intent(AdminActivity.this, DangNhapActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
+                        break;
                     case R.id.mQLThongKe:
+                        // TODO
                         break;
                     default:
+                        // TODO
                         break;
                 }
                 if (fragment != null){

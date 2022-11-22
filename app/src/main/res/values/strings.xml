@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Duan1</string>
+
+    <string name="firebase_web_client_id">796777611334-ft6vop9d5juh8m1bmgav4qa0ils5hedv.apps.googleusercontent.com</string>
+    <string name="firebase_database_uri">https://duan1-a7273-default-rtdb.asia-southeast1.firebasedatabase.app</string>
 </resources>
