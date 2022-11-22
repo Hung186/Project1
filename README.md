@@ -1,6 +1,6 @@
 ## Naming convention
 1. Xài tiếng Anh
-2. Tên biến viết đầu mỗi từ từ vị trí thứ 2 (vd: **String dayLaMotBien**)
+2. Tên biến viết hoa đầu mỗi từ từ vị trí thứ 2 (vd: **String dayLaMotBien**)
 3. Tên ID của layout sử dụng 2 chữ cái đầu của mỗi từ trong tên thẻ (vd: **EditText @+id/something -> etSomething)
 
 ## Firebase controller
