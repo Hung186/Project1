@@ -16,16 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firstapp.duan1.R;
 import com.firstapp.duan1.firebase.controller.ControllerLoaiHang;
-import com.firstapp.duan1.model.LoaiHang;
+import com.firstapp.duan1.model.ProductCategory;
 
 import java.util.List;
 
-public class LoaiHangAdapter extends RecyclerView.Adapter<LoaiHangAdapter.ViewHolder> {
-    private List<LoaiHang> list;
+public class ProductCategoryAdapter extends RecyclerView.Adapter<ProductCategoryAdapter.ViewHolder> {
+    private List<ProductCategory> list;
     private final Context context;
     private final ControllerLoaiHang controllerLoaiHang;
 
-    public LoaiHangAdapter(List<LoaiHang> list, Context context, ControllerLoaiHang controllerLoaiHang) {
+    public ProductCategoryAdapter(List<ProductCategory> list, Context context, ControllerLoaiHang controllerLoaiHang) {
         this.list = list;
         this.context = context;
         this.controllerLoaiHang = controllerLoaiHang;
@@ -43,7 +43,7 @@ public class LoaiHangAdapter extends RecyclerView.Adapter<LoaiHangAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvProductID.setText("Mã Loại:" + list.get(position).__id);
-        holder.tvProductName.setText("Tên Loại:" + list.get(position).displayName);
+        holder.tvProductName.setText("Tên Loại:" + list.get(position).categoryDisplayName);
 
         holder.ivDelete.setOnClickListener(v -> {
             int check = controllerLoaiHang.removeGetResult(list.get(holder.getAdapterPosition()).__id);
@@ -85,7 +85,7 @@ public class LoaiHangAdapter extends RecyclerView.Adapter<LoaiHangAdapter.ViewHo
         }
     }
 
-    private void showDialog(LoaiHang loaiHang) {
+    private void showDialog(ProductCategory productCategory) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View view = ((Activity) context).getLayoutInflater().inflate(R.layout.dialog_sualoaihang, null);
         builder.setView(view);
@@ -93,16 +93,16 @@ public class LoaiHangAdapter extends RecyclerView.Adapter<LoaiHangAdapter.ViewHo
         TextView tvProductID = view.findViewById(R.id.txtMaLoai);
         EditText etProductName = view.findViewById(R.id.edtTenLoai);
 
-        tvProductID.setText("Mã Loại hàng: " + loaiHang.__id);
-        etProductName.setText(loaiHang.displayName);
+        tvProductID.setText("Mã Loại hàng: " + productCategory.__id);
+        etProductName.setText(productCategory.categoryDisplayName);
 
         builder.setNegativeButton("Cập nhật", (dialog, which) -> {
-            loaiHang.displayName = etProductName.getText().toString();
+            productCategory.categoryDisplayName = etProductName.getText().toString();
 
-            boolean check = controllerLoaiHang.set(loaiHang, true);
+            boolean check = controllerLoaiHang.setSync(productCategory, true);
             if (check) {
                 Toast.makeText(context, "Thêm thành công", Toast.LENGTH_SHORT).show();
-                list = controllerLoaiHang.getAll();
+                list = controllerLoaiHang.getAllSync();
                 loadData();
             } else {
                 Toast.makeText(context, "Thêm thất bại", Toast.LENGTH_SHORT).show();
@@ -116,7 +116,7 @@ public class LoaiHangAdapter extends RecyclerView.Adapter<LoaiHangAdapter.ViewHo
 
     private void loadData() {
         list.clear();
-        list = controllerLoaiHang.getAll();
+        list = controllerLoaiHang.getAllSync();
         notifyDataSetChanged();
     }
 }

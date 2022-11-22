@@ -1,13 +1,13 @@
 package com.firstapp.duan1.model;
 
-public class HoaDonChiTiet {
+public class RecipeExtended {
     int mahdct, soluong, masp, mahoadon;
     String tensp;
     double tongtien;
 
-    public HoaDonChiTiet() {}
+    public RecipeExtended() {}
 
-    public HoaDonChiTiet(int mahdct, int soluong, int masp, int mahoadon, String tensp, double tongtien) {
+    public RecipeExtended(int mahdct, int soluong, int masp, int mahoadon, String tensp, double tongtien) {
         this.mahdct = mahdct;
         this.soluong = soluong;
         this.masp = masp;

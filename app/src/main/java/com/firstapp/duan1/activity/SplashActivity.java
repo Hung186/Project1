@@ -1,4 +1,4 @@
-package com.firstapp.duan1;
+package com.firstapp.duan1.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,10 +8,11 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.firstapp.duan1.R;
 
 import java.util.Objects;
 
-public class ManHinhChaoActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ public class ManHinhChaoActivity extends AppCompatActivity {
         Glide.with(this).load(R.mipmap.loading).into((ImageView) findViewById(R.id.ivlogo));
 
         new Handler().postDelayed(
-                () -> startActivity(new Intent(ManHinhChaoActivity.this, DangNhapActivity.class)), 3_000
+                () -> startActivity(new Intent(SplashActivity.this, AuthLoginActivity.class)), 3_000
         );
     }
 }

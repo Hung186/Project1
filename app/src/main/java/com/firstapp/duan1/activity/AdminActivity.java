@@ -1,4 +1,4 @@
-package com.firstapp.duan1;
+package com.firstapp.duan1.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.firstapp.duan1.R;
 import com.firstapp.duan1.fragment.QLKhachHang;
 import com.firstapp.duan1.fragment.QLLoaiHang;
 import com.firstapp.duan1.fragment.QLPhieuGiamGia;
@@ -58,7 +59,7 @@ public class AdminActivity extends AppCompatActivity {
                         fragment = new QLPhieuGiamGia();
                         break;
                     case R.id.mThoat:
-                        Intent intent = new Intent(AdminActivity.this, DangNhapActivity.class);
+                        Intent intent = new Intent(AdminActivity.this, AuthLoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         break;

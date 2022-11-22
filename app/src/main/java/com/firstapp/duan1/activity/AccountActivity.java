@@ -1,10 +1,12 @@
-package com.firstapp.duan1;
+package com.firstapp.duan1.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class KhachHangActivity extends AppCompatActivity {
+import com.firstapp.duan1.R;
+
+public class AccountActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

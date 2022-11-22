@@ -1,4 +1,4 @@
-package com.firstapp.duan1;
+package com.firstapp.duan1.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,9 +25,10 @@ import com.facebook.GraphRequest;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.firstapp.duan1.R;
 import com.firstapp.duan1.firebase.controller.ControllerBase;
 import com.firstapp.duan1.firebase.controller.ControllerNguoiDung;
-import com.firstapp.duan1.model.NguoiDung;
+import com.firstapp.duan1.model.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -47,7 +48,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class FirebaseAuthActivity extends AppCompatActivity {
+public class AuthFirebaseActivity extends AppCompatActivity {
     public static Resources resources;
 
     private boolean registerView = false;
@@ -211,11 +212,11 @@ public class FirebaseAuthActivity extends AppCompatActivity {
     // Google auth complete listener
     private void googleCompleteListener(Task<AuthResult> task) {
         if (task.isSuccessful()) {
-            controllerNguoiDung.getAll(
+            controllerNguoiDung.getAllAsync(
                     new ControllerBase.SuccessListener() {
                         @Override
                         public void run(DataSnapshot dataSnapshot) {
-                            List<NguoiDung> nguoiDungList = new ArrayList<>();
+                            List<User> userList = new ArrayList<>();
 
                             // null snapshot
                             if (dataSnapshot.getValue() == null) {
@@ -226,7 +227,7 @@ public class FirebaseAuthActivity extends AppCompatActivity {
                             // add list of customers
                             // on a large scale, this will have a performance hit
                             for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                nguoiDungList.add(ds.getValue(NguoiDung.class));
+                                userList.add(ds.getValue(User.class));
                             }
                             // we will log user in via firebase since it include both
                             // password-based auth and google auth,
@@ -236,21 +237,21 @@ public class FirebaseAuthActivity extends AppCompatActivity {
                             assert user != null;
 
                             // get matching account
-                            Object[] matchingCustomer = nguoiDungList.stream().filter(
-                                    c -> c.emailAddress.equals(user.getEmail()) || c.googleID.equals(user.getUid())
+                            Object[] matchingCustomer = userList.stream().filter(
+                                    c -> c.userEmailAddress.equals(user.getEmail()) || c.__googleID.equals(user.getUid())
                             ).toArray();
 
                             // if there isn't any matching user, we create one
                             if (matchingCustomer.length == 0) {
-                                NguoiDung nguoiDung =
-                                        new NguoiDung(
+                                User nguoiDung =
+                                        new User(
                                                 null,
                                                 user.getUid(),
                                                 null,
-                                                user.getPhotoUrl().toString(),
                                                 user.getDisplayName(),
-                                                null,
                                                 user.getEmail(),
+                                                user.getPhotoUrl().toString(),
+                                                -1,
                                                 null
                                         );
 

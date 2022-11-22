@@ -12,32 +12,33 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firstapp.duan1.R;
-
-import com.firstapp.duan1.model.SanPham;
+import com.firstapp.duan1.firebase.controller.ControllerPhieuGiamGia;
+import com.firstapp.duan1.model.Coupon;
 
 import java.util.List;
 
-public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHolder>{
-    private final List<SanPham> list;
+public class CouponAdapter extends RecyclerView.Adapter<CouponAdapter.ViewHolder>{
+    private final List<Coupon> list;
     private final Context context;
+    private final ControllerPhieuGiamGia controllerPhieuGiamGia;
 
-    public SanPhamAdapter(List<SanPham> list, Context context) {
+    public CouponAdapter(List<Coupon> list, Context context, ControllerPhieuGiamGia controllerPhieuGiamGia) {
         this.list = list;
         this.context = context;
+        this.controllerPhieuGiamGia = controllerPhieuGiamGia;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-        View view = inflater.inflate(R.layout.item_ql_sanpham, parent, false);
-        return new SanPhamAdapter.ViewHolder(view);
+        View view = inflater.inflate(R.layout.item_ql_phieugiamgia, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvProductName.setText("Tên SP:" + list.get(position).productName);
-        holder.tvProductBrand.setText("Thương hiệu:" + list.get(position).productBrand);
+        holder.tvReductionAmount.setText("Giá trị giảm: " + list.get(position).couponReductionPercentage);
     }
 
     @Override
@@ -46,15 +47,14 @@ public class SanPhamAdapter extends RecyclerView.Adapter<SanPhamAdapter.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tvProductName, tvProductBrand;
-        ImageView ivDelete, ivEdit;
+        TextView tvReductionAmount;
+        ImageView ivDelete;
+
         public ViewHolder(@NonNull View itemView){
             super(itemView);
 
-            tvProductName = itemView.findViewById(R.id.txtTenSP);
-            tvProductBrand = itemView.findViewById(R.id.txtThuongHieu);
+            tvReductionAmount = itemView.findViewById(R.id.txtGiaTriGiam);
             ivDelete = itemView.findViewById(R.id.ivDel);
-            ivEdit = itemView.findViewById(R.id.ivEdit);
         }
     }
 }

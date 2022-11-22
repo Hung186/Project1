@@ -15,16 +15,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firstapp.duan1.R;
-import com.firstapp.duan1.adapter.LoaiHangAdapter;
+import com.firstapp.duan1.adapter.ProductCategoryAdapter;
 import com.firstapp.duan1.firebase.controller.ControllerLoaiHang;
-import com.firstapp.duan1.model.LoaiHang;
+import com.firstapp.duan1.model.ProductCategory;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
 public class QLLoaiHang extends Fragment {
     private RecyclerView recyclerLoaiHang;
-    private List<LoaiHang> list;
+    private List<ProductCategory> list;
     private final ControllerLoaiHang controllerLoaiHang = new ControllerLoaiHang();
 
     @Nullable
@@ -57,10 +57,10 @@ public class QLLoaiHang extends Fragment {
             }
             else {
 
-                boolean check = controllerLoaiHang.set(new LoaiHang(null, name), false);
+                boolean check = controllerLoaiHang.setSync(new ProductCategory(null, name), false);
                 if (check) {
                     Toast.makeText(getContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
-                    list = controllerLoaiHang.getAll();
+                    list = controllerLoaiHang.getAllSync();
                     loadData();
                 } else {
                     Toast.makeText(getContext(), "Thêm thất bại", Toast.LENGTH_SHORT).show();
@@ -75,13 +75,13 @@ public class QLLoaiHang extends Fragment {
     }
 
     private void loadData() {
-        list = controllerLoaiHang.getAll();
+        list = controllerLoaiHang.getAllSync();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
         recyclerLoaiHang.setLayoutManager(linearLayoutManager);
 
-        LoaiHangAdapter adapter = new LoaiHangAdapter(list, getContext(), controllerLoaiHang);
+        ProductCategoryAdapter adapter = new ProductCategoryAdapter(list, getContext(), controllerLoaiHang);
 
         recyclerLoaiHang.setAdapter(adapter);
     }

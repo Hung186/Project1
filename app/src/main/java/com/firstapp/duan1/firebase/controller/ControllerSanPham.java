@@ -1,7 +1,7 @@
 package com.firstapp.duan1.firebase.controller;
 
 import com.firstapp.duan1.firebase.Firebase;
-import com.firstapp.duan1.model.SanPham;
+import com.firstapp.duan1.model.Product;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ControllerSanPham extends ControllerBase<SanPham> {
+public class ControllerSanPham extends ControllerBase<Product> {
     public ControllerSanPham() {
         super("table_nguoi_dung");
     }
 
     @Override
-    public boolean set(SanPham value, boolean update) {
+    public boolean setSync(Product value, boolean update) {
         DatabaseReference tableReference = Firebase.database.child(this.table);
         DatabaseReference rowReference;
 
@@ -41,12 +41,12 @@ public class ControllerSanPham extends ControllerBase<SanPham> {
     }
 
     @Override
-    public void set(SanPham value, boolean update, SuccessListener successListener, FailureListener failureListener) {
+    public void setAsync(Product value, boolean update, SuccessListener successListener, FailureListener failureListener) {
         // Asynchronous function
     }
 
     @Override
-    public boolean remove(String id) {
+    public boolean removeSync(String id) {
         try {
             Tasks.await(Firebase.database.child(this.table).child(id).setValue(null));
             return true;
@@ -57,14 +57,14 @@ public class ControllerSanPham extends ControllerBase<SanPham> {
     }
 
     @Override
-    public void remove(String id, SuccessListener successListener, FailureListener failureListener) {
+    public void removeAsync(String id, SuccessListener successListener, FailureListener failureListener) {
         // Asynchronous function
     }
 
     @Override
-    public SanPham get(String id) {
+    public Product getSync(String id) {
         try {
-            return Tasks.await(Firebase.database.child(this.table).child(id).get()).getValue(SanPham.class);
+            return Tasks.await(Firebase.database.child(this.table).child(id).get()).getValue(Product.class);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -72,17 +72,17 @@ public class ControllerSanPham extends ControllerBase<SanPham> {
     }
 
     @Override
-    public void get(String id, SuccessListener successListener, FailureListener failureListener) {
+    public void getAsync(String id, SuccessListener successListener, FailureListener failureListener) {
         // Asynchronous function
     }
 
     @Override
-    public List<SanPham> getAll() {
+    public List<Product> getAllSync() {
         try {
-            List<SanPham> list = new ArrayList<>();
+            List<Product> list = new ArrayList<>();
 
             for (DataSnapshot dataSnapshot : Tasks.await(Firebase.database.child(this.table).get()).getChildren()) {
-                list.add(dataSnapshot.getValue(SanPham.class));
+                list.add(dataSnapshot.getValue(Product.class));
             }
 
             return list;
@@ -93,7 +93,7 @@ public class ControllerSanPham extends ControllerBase<SanPham> {
     }
 
     @Override
-    public void getAll(SuccessListener successListener, FailureListener failureListener) {
+    public void getAllAsync(SuccessListener successListener, FailureListener failureListener) {
         // Asynchronous function
     }
 }

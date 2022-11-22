@@ -14,25 +14,25 @@
         android:theme="@style/Theme.Duan1"
         tools:targetApi="31">
         <activity
-            android:name=".KhachHangActivity"
+            android:name=".activity.AccountActivity"
             android:exported="false" />
         <activity
-            android:name=".VerifyPhoneNumberActivity"
+            android:name=".activity.AuthPhoneVerificationActivity"
             android:exported="false" />
         <activity
-            android:name=".EnterOtpActivity"
+            android:name=".activity.AuthPhoneOtpActivity"
             android:exported="false" />
         <activity
-            android:name=".DangNhapActivity"
+            android:name=".activity.AuthLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ManHinhChaoActivity"
+            android:name=".activity.SplashActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminActivity"
+            android:name=".activity.AdminActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

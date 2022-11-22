@@ -1,8 +1,7 @@
 package com.firstapp.duan1.firebase.controller;
 
 import com.firstapp.duan1.firebase.Firebase;
-import com.firstapp.duan1.model.PhieuGiamGia;
-import com.firstapp.duan1.model.PhieuGiamGia;
+import com.firstapp.duan1.model.Coupon;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -11,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ControllerPhieuGiamGia extends ControllerBase<PhieuGiamGia> {
+public class ControllerPhieuGiamGia extends ControllerBase<Coupon> {
     public ControllerPhieuGiamGia() {
         super("table_nguoi_dung");
     }
 
     @Override
-    public boolean set(PhieuGiamGia value, boolean update) {
+    public boolean setSync(Coupon value, boolean update) {
         DatabaseReference tableReference = Firebase.database.child(this.table);
         DatabaseReference rowReference;
 
@@ -42,12 +41,12 @@ public class ControllerPhieuGiamGia extends ControllerBase<PhieuGiamGia> {
     }
 
     @Override
-    public void set(PhieuGiamGia value, boolean update, SuccessListener successListener, FailureListener failureListener) {
+    public void setAsync(Coupon value, boolean update, SuccessListener successListener, FailureListener failureListener) {
         // Asynchronous function
     }
 
     @Override
-    public boolean remove(String id) {
+    public boolean removeSync(String id) {
         try {
             Tasks.await(Firebase.database.child(this.table).child(id).setValue(null));
             return true;
@@ -58,14 +57,14 @@ public class ControllerPhieuGiamGia extends ControllerBase<PhieuGiamGia> {
     }
 
     @Override
-    public void remove(String id, SuccessListener successListener, FailureListener failureListener) {
+    public void removeAsync(String id, SuccessListener successListener, FailureListener failureListener) {
         // Asynchronous function
     }
 
     @Override
-    public PhieuGiamGia get(String id) {
+    public Coupon getSync(String id) {
         try {
-            return Tasks.await(Firebase.database.child(this.table).child(id).get()).getValue(PhieuGiamGia.class);
+            return Tasks.await(Firebase.database.child(this.table).child(id).get()).getValue(Coupon.class);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -73,17 +72,17 @@ public class ControllerPhieuGiamGia extends ControllerBase<PhieuGiamGia> {
     }
 
     @Override
-    public void get(String id, SuccessListener successListener, FailureListener failureListener) {
+    public void getAsync(String id, SuccessListener successListener, FailureListener failureListener) {
         // Asynchronous function
     }
 
     @Override
-    public List<PhieuGiamGia> getAll() {
+    public List<Coupon> getAllSync() {
         try {
-            List<PhieuGiamGia> list = new ArrayList<>();
+            List<Coupon> list = new ArrayList<>();
 
             for (DataSnapshot dataSnapshot : Tasks.await(Firebase.database.child(this.table).get()).getChildren()) {
-                list.add(dataSnapshot.getValue(PhieuGiamGia.class));
+                list.add(dataSnapshot.getValue(Coupon.class));
             }
 
             return list;
@@ -94,7 +93,7 @@ public class ControllerPhieuGiamGia extends ControllerBase<PhieuGiamGia> {
     }
 
     @Override
-    public void getAll(SuccessListener successListener, FailureListener failureListener) {
+    public void getAllAsync(SuccessListener successListener, FailureListener failureListener) {
         // Asynchronous function
     }
 }

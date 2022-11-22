@@ -1,15 +1,15 @@
 package com.firstapp.duan1.model;
 
-public class SanPham {
-    public String __id, categoryId, productName, productBrand, productDescription;
+public class Product {
+    public String __id, productCategoryId, productName, productBrand, productDescription;
     public double productPrice;
     public String[] productThumbnails;
 
-    public SanPham() {}
+    public Product() {}
 
-    public SanPham(String id, String categoryId, String productName, String productBrand, String productDescription, double productPrice, String[] productThumbnails) {
+    public Product(String id, String productCategoryId, String productName, String productBrand, String productDescription, double productPrice, String[] productThumbnails) {
         this.__id = id;
-        this.categoryId = categoryId;
+        this.productCategoryId = productCategoryId;
         this.productName = productName;
         this.productBrand = productBrand;
         this.productDescription = productDescription;

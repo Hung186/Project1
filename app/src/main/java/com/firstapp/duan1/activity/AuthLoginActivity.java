@@ -1,4 +1,4 @@
-package com.firstapp.duan1;
+package com.firstapp.duan1.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,10 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firstapp.duan1.firebase.controller.ControllerNguoiDung;
+import com.firstapp.duan1.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class DangNhapActivity extends AppCompatActivity {
+public class AuthLoginActivity extends AppCompatActivity {
     private EditText etUsername, etPassword;
     private CheckBox cbRememberMe;
     private Button btnLogin;
@@ -46,18 +46,18 @@ public class DangNhapActivity extends AppCompatActivity {
                     loaitaikhoan = sharedPreferences.getString("loaitaikhoan", "");
 
                     if (loaitaikhoan.equals("Admin")){
-                        Toast.makeText(DangNhapActivity.this, "Xin chào Admin", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(DangNhapActivity.this, AdminActivity.class));
+                        Toast.makeText(AuthLoginActivity.this, "Xin chào Admin", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(AuthLoginActivity.this, AdminActivity.class));
                     }
                     else if (loaitaikhoan.equals("Customer")){
-                        Toast.makeText(DangNhapActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(DangNhapActivity.this, KhachHangActivity.class));
+                        Toast.makeText(AuthLoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(AuthLoginActivity.this, AccountActivity.class));
                     }
                     else {
-                        Toast.makeText(DangNhapActivity.this, "Tài khoản không tồn tại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AuthLoginActivity.this, "Tài khoản không tồn tại", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(DangNhapActivity.this, "UserName hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AuthLoginActivity.this, "UserName hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
                     task.getException().printStackTrace();
                 }
             });

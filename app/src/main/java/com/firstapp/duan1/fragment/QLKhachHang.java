@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firstapp.duan1.R;
-import com.firstapp.duan1.adapter.NguoiDungAdapter;
+import com.firstapp.duan1.adapter.UserAdapter;
 import com.firstapp.duan1.firebase.controller.ControllerNguoiDung;
-import com.firstapp.duan1.model.NguoiDung;
+import com.firstapp.duan1.model.User;
 
 import java.util.List;
 
@@ -35,11 +35,11 @@ public class QLKhachHang extends Fragment {
     }
 
     private void loadData() {
-        List<NguoiDung> list = controllerNguoiDung.getAll();
+        List<User> list = controllerNguoiDung.getAllSync();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
         recyclerQLKhachHang.setLayoutManager(linearLayoutManager);
-        NguoiDungAdapter adapter = new NguoiDungAdapter(list, getContext());
+        UserAdapter adapter = new UserAdapter(list, getContext());
 
         recyclerQLKhachHang.setAdapter(adapter);
     }

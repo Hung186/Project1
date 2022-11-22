@@ -1,4 +1,4 @@
-package com.firstapp.duan1;
+package com.firstapp.duan1.activity;
 
 import static android.content.ContentValues.TAG;
 
@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.firstapp.duan1.R;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -22,7 +23,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class VerifyPhoneNumberActivity extends AppCompatActivity {
+public class AuthPhoneVerificationActivity extends AppCompatActivity {
     private EditText etPhoneNumber;
     private Button btnVerifyPhoneNumber;
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -55,7 +56,7 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
 
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Toast.makeText(VerifyPhoneNumberActivity.this, "verification failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AuthPhoneVerificationActivity.this, "verification failed", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -83,7 +84,7 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
                         Log.w(TAG, "signInWithCredential:failure", task.getException());
 
                         if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                            Toast.makeText(VerifyPhoneNumberActivity.this, " The verification code entered was invalid", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AuthPhoneVerificationActivity.this, " The verification code entered was invalid", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -97,7 +98,7 @@ public class VerifyPhoneNumberActivity extends AppCompatActivity {
     }
 
     private void goToEnterOtpActivity(String strPhoneNumber, String verificationId) {
-        Intent intent = new Intent(this, EnterOtpActivity.class);
+        Intent intent = new Intent(this, AuthPhoneOtpActivity.class);
         intent.putExtra("phone_number", strPhoneNumber);
         intent.putExtra("verification_id", verificationId);
 

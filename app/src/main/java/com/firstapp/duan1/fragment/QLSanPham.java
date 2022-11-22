@@ -13,16 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firstapp.duan1.R;
-import com.firstapp.duan1.adapter.SanPhamAdapter;
+import com.firstapp.duan1.adapter.ProductAdapter;
 import com.firstapp.duan1.firebase.controller.ControllerSanPham;
-import com.firstapp.duan1.model.SanPham;
+import com.firstapp.duan1.model.Product;
 
 import java.util.List;
 
 public class QLSanPham extends Fragment {
     private Spinner spLoaiHang;
     private RecyclerView recyclerQLSanPham;
-    private List<SanPham> list;
+    private List<Product> list;
     private final ControllerSanPham controllerSanPham = new ControllerSanPham();
 
 
@@ -41,13 +41,13 @@ public class QLSanPham extends Fragment {
 
 
     private void loadData() {
-        list = controllerSanPham.getAll();
+        list = controllerSanPham.getAllSync();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 
         recyclerQLSanPham.setLayoutManager(linearLayoutManager);
 
-        SanPhamAdapter adapter = new SanPhamAdapter(list, getContext());
+        ProductAdapter adapter = new ProductAdapter(list, getContext());
 
         recyclerQLSanPham.setAdapter(adapter);
     }

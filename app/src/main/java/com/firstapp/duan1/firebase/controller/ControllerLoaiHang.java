@@ -1,9 +1,8 @@
 package com.firstapp.duan1.firebase.controller;
 
 import com.firstapp.duan1.firebase.Firebase;
-import com.firstapp.duan1.model.LoaiHang;
-import com.firstapp.duan1.model.LoaiHang;
-import com.firstapp.duan1.model.SanPham;
+import com.firstapp.duan1.model.ProductCategory;
+import com.firstapp.duan1.model.Product;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -12,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ControllerLoaiHang extends ControllerBase<LoaiHang> {
+public class ControllerLoaiHang extends ControllerBase<ProductCategory> {
     public ControllerLoaiHang() {
         super("table_nguoi_dung");
     }
 
     @Override
-    public boolean set(LoaiHang value, boolean update) {
+    public boolean setSync(ProductCategory value, boolean update) {
         DatabaseReference tableReference = Firebase.database.child(this.table);
         DatabaseReference rowReference;
 
@@ -43,14 +42,14 @@ public class ControllerLoaiHang extends ControllerBase<LoaiHang> {
     }
 
     @Override
-    public void set(LoaiHang value, boolean update, SuccessListener successListener, FailureListener failureListener) {
+    public void setAsync(ProductCategory value, boolean update, SuccessListener successListener, FailureListener failureListener) {
         // Asynchronous function
     }
 
     public int removeGetResult(String id) {
         try {
-            List<SanPham> list = new ControllerSanPham().getAll();
-            boolean hasAny = list.stream().anyMatch(sanPham -> sanPham.categoryId.equals(id));
+            List<Product> list = new ControllerSanPham().getAllSync();
+            boolean hasAny = list.stream().anyMatch(product -> product.productCategoryId.equals(id));
 
             if (hasAny) return 3;
 
@@ -63,20 +62,20 @@ public class ControllerLoaiHang extends ControllerBase<LoaiHang> {
     }
 
     @Override
-    public boolean remove(String id) {
+    public boolean removeSync(String id) {
         // Not implemented
         return false;
     }
 
     @Override
-    public void remove(String id, SuccessListener successListener, FailureListener failureListener) {
+    public void removeAsync(String id, SuccessListener successListener, FailureListener failureListener) {
         // Asynchronous function
     }
 
     @Override
-    public LoaiHang get(String id) {
+    public ProductCategory getSync(String id) {
         try {
-            return Tasks.await(Firebase.database.child(this.table).child(id).get()).getValue(LoaiHang.class);
+            return Tasks.await(Firebase.database.child(this.table).child(id).get()).getValue(ProductCategory.class);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -84,17 +83,17 @@ public class ControllerLoaiHang extends ControllerBase<LoaiHang> {
     }
 
     @Override
-    public void get(String id, SuccessListener successListener, FailureListener failureListener) {
+    public void getAsync(String id, SuccessListener successListener, FailureListener failureListener) {
         // Asynchronous function
     }
 
     @Override
-    public List<LoaiHang> getAll() {
+    public List<ProductCategory> getAllSync() {
         try {
-            List<LoaiHang> list = new ArrayList<>();
+            List<ProductCategory> list = new ArrayList<>();
 
             for (DataSnapshot dataSnapshot : Tasks.await(Firebase.database.child(this.table).get()).getChildren()) {
-                list.add(dataSnapshot.getValue(LoaiHang.class));
+                list.add(dataSnapshot.getValue(ProductCategory.class));
             }
 
             return list;
@@ -105,7 +104,7 @@ public class ControllerLoaiHang extends ControllerBase<LoaiHang> {
     }
 
     @Override
-    public void getAll(SuccessListener successListener, FailureListener failureListener) {
+    public void getAllAsync(SuccessListener successListener, FailureListener failureListener) {
         // Asynchronous function
     }
 }

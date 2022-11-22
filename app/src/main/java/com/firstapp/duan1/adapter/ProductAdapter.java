@@ -12,33 +12,32 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firstapp.duan1.R;
-import com.firstapp.duan1.firebase.controller.ControllerPhieuGiamGia;
-import com.firstapp.duan1.model.PhieuGiamGia;
+
+import com.firstapp.duan1.model.Product;
 
 import java.util.List;
 
-public class PhieuGiamGiaAdapter extends RecyclerView.Adapter<PhieuGiamGiaAdapter.ViewHolder>{
-    private final List<PhieuGiamGia> list;
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder>{
+    private final List<Product> list;
     private final Context context;
-    private final ControllerPhieuGiamGia controllerPhieuGiamGia;
 
-    public PhieuGiamGiaAdapter(List<PhieuGiamGia> list, Context context, ControllerPhieuGiamGia controllerPhieuGiamGia) {
+    public ProductAdapter(List<Product> list, Context context) {
         this.list = list;
         this.context = context;
-        this.controllerPhieuGiamGia = controllerPhieuGiamGia;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-        View view = inflater.inflate(R.layout.item_ql_phieugiamgia, parent, false);
-        return new ViewHolder(view);
+        View view = inflater.inflate(R.layout.item_ql_sanpham, parent, false);
+        return new ProductAdapter.ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvReductionAmount.setText("Giá trị giảm: " + list.get(position).percentage);
+        holder.tvProductName.setText("Tên SP:" + list.get(position).productName);
+        holder.tvProductBrand.setText("Thương hiệu:" + list.get(position).productBrand);
     }
 
     @Override
@@ -47,14 +46,15 @@ public class PhieuGiamGiaAdapter extends RecyclerView.Adapter<PhieuGiamGiaAdapte
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tvReductionAmount;
-        ImageView ivDelete;
-
+        TextView tvProductName, tvProductBrand;
+        ImageView ivDelete, ivEdit;
         public ViewHolder(@NonNull View itemView){
             super(itemView);
 
-            tvReductionAmount = itemView.findViewById(R.id.txtGiaTriGiam);
+            tvProductName = itemView.findViewById(R.id.txtTenSP);
+            tvProductBrand = itemView.findViewById(R.id.txtThuongHieu);
             ivDelete = itemView.findViewById(R.id.ivDel);
+            ivEdit = itemView.findViewById(R.id.ivEdit);
         }
     }
 }

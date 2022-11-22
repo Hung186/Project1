@@ -46,18 +46,18 @@ public abstract class ControllerBase<T> {
     }
 
     // Set new value or update existing one
-    public abstract boolean set(T value, boolean update);
-    public abstract void set(T value, boolean update, SuccessListener successListener, FailureListener failureListener);
+    public abstract boolean setSync(T value, boolean update);
+    public abstract void setAsync(T value, boolean update, SuccessListener successListener, FailureListener failureListener);
 
     // Remove value at index
-    public abstract boolean remove(String id);
-    public abstract void remove(String id, SuccessListener successListener, FailureListener failureListener);
+    public abstract boolean removeSync(String id);
+    public abstract void removeAsync(String id, SuccessListener successListener, FailureListener failureListener);
 
     // Get value at index
-    public abstract T get(String id);
-    public abstract void get(String id, SuccessListener successListener, FailureListener failureListener);
+    public abstract T getSync(String id);
+    public abstract void getAsync(String id, SuccessListener successListener, FailureListener failureListener);
 
     // Get all values from table
-    public abstract List<T> getAll();
-    public abstract void getAll(SuccessListener successListener, FailureListener failureListener);
+    public abstract List<T> getAllSync();
+    public abstract void getAllAsync(SuccessListener successListener, FailureListener failureListener);
 }

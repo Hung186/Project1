@@ -1,4 +1,4 @@
-package com.firstapp.duan1;
+package com.firstapp.duan1.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firstapp.duan1.R;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
@@ -21,8 +22,8 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class EnterOtpActivity extends AppCompatActivity {
-    public static final String TAG = EnterOtpActivity.class.getName();
+public class AuthPhoneOtpActivity extends AppCompatActivity {
+    public static final String TAG = AuthPhoneOtpActivity.class.getName();
     private EditText etEditOtp;
     private Button btnSendOtpCode;
     private TextView tvSendOtpAgain;
@@ -82,7 +83,7 @@ public class EnterOtpActivity extends AppCompatActivity {
 
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Toast.makeText(EnterOtpActivity.this, "verification failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AuthPhoneOtpActivity.this, "verification failed", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
@@ -114,7 +115,7 @@ public class EnterOtpActivity extends AppCompatActivity {
                         Log.w(TAG, "signInWithCredential:failure", task.getException());
 
                         if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                            Toast.makeText(EnterOtpActivity.this, " The verification code entered was invalid", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AuthPhoneOtpActivity.this, " The verification code entered was invalid", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

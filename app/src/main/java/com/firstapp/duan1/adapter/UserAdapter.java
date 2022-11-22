@@ -12,15 +12,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firstapp.duan1.R;
-import com.firstapp.duan1.model.NguoiDung;
+import com.firstapp.duan1.model.User;
 
 import java.util.List;
 
-public class NguoiDungAdapter extends RecyclerView.Adapter<NguoiDungAdapter.ViewHolder>{
-    private final List<NguoiDung> list;
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
+    private final List<User> list;
     private final Context context;
 
-    public NguoiDungAdapter(List<NguoiDung> list, Context context) {
+    public UserAdapter(List<User> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -36,8 +36,8 @@ public class NguoiDungAdapter extends RecyclerView.Adapter<NguoiDungAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tvCustomerName.setText("Tên Khách Hàng: " + list.get(position).fullName);
-        holder.tvCustomerPhoneNumber.setText("SĐT: " + list.get(position).phoneNumber);
+        holder.tvCustomerName.setText("Tên Khách Hàng: " + list.get(position).userFullName);
+        holder.tvCustomerPhoneNumber.setText("SĐT: " + list.get(position).userPhoneNumber);
     }
 
     @Override
